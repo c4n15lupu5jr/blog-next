@@ -8,6 +8,9 @@ import { PostCover } from '../../components/PostCover';
 import { PostDetails } from '../../components/PostDetails';
 import { PostContainer } from '../../components/PostContainer';
 import { Comments } from '../../Comments';
+import Head from 'next/head';
+import { SITE_NAME } from '../../config/app-config';
+import { removeHtml } from '../../utils/remove-html';
 
 export type PostProps = {
     post: PostData;
@@ -16,6 +19,12 @@ export type PostProps = {
 export const Post = ({ post }: PostProps) => {
     return (
     <>
+        <Head>
+            <title>{post.title} - {SITE_NAME}</title>
+            <meta name="description" 
+            content={removeHtml(post.content).slice(0, 150)} />
+        </Head>
+
         <Header />
 
         <MainContainer>
